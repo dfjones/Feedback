@@ -1,0 +1,16 @@
+.control-label {
+  text-align: center;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 1;
+  color: inherit;
+  text-rendering: optimizelegibility;
+  font-size: 18px;
+}
+
+
+.control-container {
+  min-height: 20px;
+  padding: 14px;
+  margin-bottom: 20px;
+}
