@@ -3,6 +3,11 @@ var app = require('express')();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
+io.configure(function() {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
+
 var AVG_INTERVAL = 1000;
 
 var Feedback = function () {
