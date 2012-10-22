@@ -8,9 +8,13 @@
   font-size: 18px;
 }
 
-
 .control-container {
   min-height: 20px;
   padding: 14px;
   margin-bottom: 20px;
+}
+
+#feedback-graph-negative canvas {
+  background-color: #ffaaaa;
+  margin: -4px;
 }
