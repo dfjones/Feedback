@@ -3,7 +3,7 @@ var app = require('express')();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
-var AVG_INTERVAL = 750;
+var AVG_INTERVAL = 1000;
 
 var Feedback = function () {
   this.clients = {};
