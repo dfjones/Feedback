@@ -1,4 +1,16 @@
+var SEND_FREQ = 250;
+
 $(document).ready(function () {
+
+  var path = window.location.pathname;
+  path = path.split('/');
+  path = path[path.length-1];
+
+  var socket = io.connect('/c/' + path);
+  socket.on('average', function (data) {
+    onDataChange(data);
+  });
+
   var posPoints = [];
   var negPoints = [];
 
@@ -7,6 +19,8 @@ $(document).ready(function () {
     chartRangeMax: 100,
     lineColor: "#00bf00",
     fillColor: "#aaffaa",
+    minSpotColor: "#0000f0",
+    maxSpotColor: "#0000f0",
     height: "200px"
   };
   var negOptions = {
@@ -14,6 +28,8 @@ $(document).ready(function () {
     chartRangeMax: 0,
     lineColor: "#ff0000",
     fillColor: "#eee",
+    minSpotColor: "#0000f0",
+    maxSpotColor: "#0000f0",
     height: "200px"
   };
 
@@ -38,10 +54,7 @@ $(document).ready(function () {
   drawPos(0);
   drawNeg(0);
 
-  var onSliderChange = function() {
-    var val = $("#control").slider("value");
-    val -= 50;
-    val *= 2.0;
+  var onDataChange = function(val) {
     if (val < 0) {
       drawNeg(val);
       drawPos(0);
@@ -50,9 +63,17 @@ $(document).ready(function () {
       drawNeg(0);
     }
   };
+
+  var sendSliderVal = function() {
+    var val = $("#control").slider("value");
+    val -= 50;
+    val *= 2.0;
+    socket.emit("value", val);
+  };
+
   var $control = $("#control");
   $control.slider();
   $control.slider("value", 50);
 
-  setInterval(onSliderChange, 10);
+  setInterval(sendSliderVal, SEND_FREQ);
 });
