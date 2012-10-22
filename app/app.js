@@ -21,7 +21,6 @@ var rooms = {};
 var data = {};
 
 app.get('/', function(req, res) {
-  console.log(__dirname);
   res.sendfile(__dirname + '/static/index.html');
 });
 
@@ -37,7 +36,6 @@ app.get('/f/:name', function(req, res) {
             data[name].clients[socket.id] = true;
             data[name].clientCount += 1;
             data[name].total += value;
-            console.log(name + ": " + value);
           }
         });
       });
@@ -45,6 +43,7 @@ app.get('/f/:name', function(req, res) {
     setInterval(function () {
       var avg = data[name].total / data[name].clientCount;
       rooms[name].emit("average", avg);
+      console.log(name + ": " + data[name].clientCount);
       data[name] = new Feedback();
     }, AVG_INTERVAL);
   }
