@@ -11,7 +11,8 @@ var Feedback = function () {
   this.total = 0;
 };
 
-server.listen(8000);
+var port = process.env.PORT || 8000;
+server.listen(port);
 
 app.use(express.static(__dirname + '/static/'));
 
