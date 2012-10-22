@@ -1,4 +1,4 @@
-var SEND_FREQ = 250;
+var SEND_FREQ = 1000;
 
 $(document).ready(function () {
 
