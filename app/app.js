@@ -4,8 +4,6 @@ var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
 io.configure(function() {
-  io.set("transports", ["xhr-polling"]);
-  io.set("polling duration", 10);
   io.set("log level", 2);
 });
 
