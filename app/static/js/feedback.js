@@ -75,5 +75,9 @@ $(document).ready(function () {
   $control.slider();
   $control.slider("value", 50);
 
+  $("#btn-reset").click(function () {
+    $("#control").slider("value", 50);
+  });
+
   setInterval(sendSliderVal, SEND_FREQ);
 });
