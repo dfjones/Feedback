@@ -68,7 +68,7 @@ $(document).ready(function () {
   };
 
   var fakeDraw = function() {
-    if (lastPoint) {
+    if (lastPoint != null) {
       onDataChange(lastPoint);
     }
   }
