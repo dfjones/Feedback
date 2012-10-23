@@ -9,7 +9,7 @@ io.configure(function() {
   io.set("log level", 2);
 });
 
-var AVG_INTERVAL = 5000;
+var AVG_INTERVAL = 2000;
 
 var Feedback = function () {
   this.clients = {};
