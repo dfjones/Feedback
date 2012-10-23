@@ -1,3 +1,4 @@
+var UPDATE_FREQ = 250;
 var SEND_FREQ = 1000;
 
 $(document).ready(function () {
@@ -13,6 +14,7 @@ $(document).ready(function () {
 
   var posPoints = [];
   var negPoints = [];
+  var lastPoint = null;
 
   var posOptions = {
     chartRangeMin: 0,
@@ -55,6 +57,7 @@ $(document).ready(function () {
   drawNeg(0);
 
   var onDataChange = function(val) {
+    lastPoint = val;
     if (val < 0) {
       drawNeg(val);
       drawPos(0);
@@ -63,6 +66,12 @@ $(document).ready(function () {
       drawNeg(0);
     }
   };
+
+  var fakeDraw = function() {
+    if (lastPoint) {
+      onDataChange(lastPoint);
+    }
+  }
 
   var sendSliderVal = function() {
     var val = $("#control").slider("value");
@@ -80,4 +89,5 @@ $(document).ready(function () {
   });
 
   setInterval(sendSliderVal, SEND_FREQ);
+  setInterval(fakeDraw, UPDATE_FREQ);
 });
